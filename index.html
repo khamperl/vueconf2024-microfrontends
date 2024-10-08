@@ -1,0 +1,1228 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+
+  <title>Micro frontends with Vue - by Klaus Hamperl - Einhell AG</title>
+
+  <meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+  <meta name="author" content="Hakim El Hattab">
+
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="dist/reset.css">
+  <link rel="stylesheet" href="dist/reveal.css">
+  <link rel="stylesheet" href="dist/theme/night.css" id="theme">
+  <link rel="stylesheet" href="plugin/mdi/materialdesignicons.css" >
+
+  <!-- Theme used for syntax highlighting of code -->
+  <link rel="stylesheet" href="plugin/highlight/monokai.css">
+</head>
+
+<body>
+
+<div class="reveal">
+
+  <!-- Any section element inside of this container is displayed as a slide -->
+  <div class="slides">
+    <section data-background-image="./assets/presentation-bg.jpg">
+      <div id="main">
+        <h1 class="__main-title">Micro Frontends</h1>
+        <h2 class="__sub-title">with Vue.js, Vite <br/> and Module Federation</h2>
+        <h4>
+          by Klaus Hamperl<br>
+        </h4>
+
+        <div>
+          <img src="./assets/einhell.svg" alt="Einhell AG" />
+        </div>
+      </div>
+      <aside class="notes">
+        Welcome to Microfrontends with Vue.<br/>
+        Thanks for this great Conference and the great organisation...
+      </aside>
+    </section>
+    <section data-background-image="./assets/presentation-bg.jpg">
+      <div id="overme">
+      <h2>Who am I</h2>
+      <img class="fragment fade-up" src="./assets/kh.png" alt="Klaus Hamperl" width="200" />
+      <p class="fragment fade-up">Klaus Hamperl</p>
+      <p class="fragment fade-up">Teamlead Frontend Development at Einhell Germany AG</p>
+      <div class="fragment fade-up">
+      <ul class="__contact-list">
+        <li>
+            <span class="mdi mdi-github">
+              <a href="https://github.com/khamperl">https://github.com/khamperl</a>
+            </span>
+        </li>
+        <li>
+          <span class="mdi mdi-email"/>
+          <a href="mailto:klaus.hamperl@einhell.com">klaus.hamperl@einhell.com</a>
+        </li>
+        <li>
+          <span>
+            <svg xmlns="http://www.w3.org/2000/svg" class="__x-logo" viewBox="0 0 1483 1483">
+             <path d="M 304.292 302.750 C 307.279 307.012, 376.455 407.700, 458.017 526.500 C 539.579 645.300, 615.016 755.165, 625.656 770.645 C 636.295 786.125, 645 799.101, 645 799.481 C 645 799.861, 641.038 804.746, 636.196 810.336 C 631.354 815.926, 617.715 831.750, 605.889 845.500 C 594.062 859.250, 574.125 882.425, 561.584 897 C 549.044 911.575, 526.982 937.225, 512.557 954 C 498.133 970.775, 472.194 1000.934, 454.915 1021.020 C 401.474 1083.146, 393.762 1092.119, 353.081 1139.500 C 331.359 1164.800, 310.529 1188.990, 306.793 1193.256 C 303.057 1197.522, 300 1201.460, 300 1202.006 C 300 1202.647, 313.644 1203, 338.441 1203 L 376.881 1203 419.142 1153.750 C 442.386 1126.662, 465.315 1100, 470.095 1094.500 C 480.432 1082.608, 559.262 990.885, 565.888 983.040 C 568.425 980.037, 572.110 975.762, 574.077 973.540 C 576.045 971.318, 591.554 953.300, 608.542 933.500 C 625.529 913.700, 639.895 897.015, 640.464 896.422 C 641.034 895.830, 650.027 885.367, 660.449 873.172 C 670.871 860.978, 679.720 851, 680.113 851 C 680.507 851, 734.043 928.513, 799.084 1023.250 C 864.124 1117.987, 918.500 1197.178, 919.920 1199.229 L 922.500 1202.957 1054.357 1202.979 C 1162.791 1202.996, 1186.125 1202.767, 1185.710 1201.687 C 1185.270 1200.539, 1122.096 1108.393, 960.025 872.500 C 843.352 702.684, 827.838 679.864, 828.283 678.706 C 828.715 677.580, 844.607 658.993, 949.085 537.417 C 967.007 516.563, 991.712 487.800, 1003.985 473.500 C 1016.258 459.200, 1028.650 444.800, 1031.522 441.500 C 1034.394 438.200, 1049.496 420.650, 1065.082 402.500 C 1080.667 384.350, 1107.162 353.510, 1123.960 333.967 C 1140.757 314.424, 1155.118 297.662, 1155.872 296.717 C 1157.165 295.100, 1154.969 295, 1118.199 295 L 1079.154 295 1061.788 315.250 C 1038.675 342.200, 996.894 390.799, 985.030 404.532 C 979.789 410.600, 973.250 418.226, 970.500 421.478 C 967.750 424.730, 962.324 431.015, 958.443 435.445 C 954.562 439.875, 935.003 462.625, 914.978 486 C 894.954 509.375, 878.296 528.725, 877.960 529 C 877.625 529.275, 873.334 534.252, 868.425 540.061 C 859.839 550.221, 851.101 560.391, 811.027 606.865 C 793.437 627.265, 792.535 628.141, 791.052 626.266 C 790.199 625.186, 738.650 550.213, 676.500 459.661 L 563.500 295.021 431.181 295.010 L 298.862 295 304.292 302.750 M 407.565 356.742 C 408.559 358.259, 433.281 393.700, 462.504 435.500 C 517.927 514.776, 735.717 826.486, 875.781 1027 C 920.539 1091.075, 957.705 1144.066, 958.373 1144.758 C 959.327 1145.747, 972.359 1145.961, 1019.267 1145.758 L 1078.947 1145.500 922.776 922 C 836.881 799.075, 712.520 621.100, 646.418 526.500 L 526.232 354.500 465.996 354.242 L 405.760 353.984 407.565 356.742" stroke="none" fill="#fafafa" fill-rule="evenodd"/><path d="M 0 741.501 L 0 1483.001 741.750 1482.751 L 1483.500 1482.500 1483.751 741.250 L 1484.001 0 742.001 0 L 0 0 0 741.501 M 0.497 742 C 0.497 1149.825, 0.611 1316.662, 0.750 1112.750 C 0.889 908.837, 0.889 575.162, 0.750 371.250 C 0.611 167.337, 0.497 334.175, 0.497 742 M 304.292 302.750 C 307.279 307.012, 376.455 407.700, 458.017 526.500 C 539.579 645.300, 615.016 755.165, 625.656 770.645 C 636.295 786.125, 645 799.101, 645 799.481 C 645 799.861, 641.038 804.746, 636.196 810.336 C 631.354 815.926, 617.715 831.750, 605.889 845.500 C 594.062 859.250, 574.125 882.425, 561.584 897 C 549.044 911.575, 526.982 937.225, 512.557 954 C 498.133 970.775, 472.194 1000.934, 454.915 1021.020 C 401.474 1083.146, 393.762 1092.119, 353.081 1139.500 C 331.359 1164.800, 310.529 1188.990, 306.793 1193.256 C 303.057 1197.522, 300 1201.460, 300 1202.006 C 300 1202.647, 313.644 1203, 338.441 1203 L 376.881 1203 419.142 1153.750 C 442.386 1126.662, 465.315 1100, 470.095 1094.500 C 480.432 1082.608, 559.262 990.885, 565.888 983.040 C 568.425 980.037, 572.110 975.762, 574.077 973.540 C 576.045 971.318, 591.554 953.300, 608.542 933.500 C 625.529 913.700, 639.895 897.015, 640.464 896.422 C 641.034 895.830, 650.027 885.367, 660.449 873.172 C 670.871 860.978, 679.720 851, 680.113 851 C 680.507 851, 734.043 928.513, 799.084 1023.250 C 864.124 1117.987, 918.500 1197.178, 919.920 1199.229 L 922.500 1202.957 1054.357 1202.979 C 1162.791 1202.996, 1186.125 1202.767, 1185.710 1201.687 C 1185.270 1200.539, 1122.096 1108.393, 960.025 872.500 C 843.352 702.684, 827.838 679.864, 828.283 678.706 C 828.715 677.580, 844.607 658.993, 949.085 537.417 C 967.007 516.563, 991.712 487.800, 1003.985 473.500 C 1016.258 459.200, 1028.650 444.800, 1031.522 441.500 C 1034.394 438.200, 1049.496 420.650, 1065.082 402.500 C 1080.667 384.350, 1107.162 353.510, 1123.960 333.967 C 1140.757 314.424, 1155.118 297.662, 1155.872 296.717 C 1157.165 295.100, 1154.969 295, 1118.199 295 L 1079.154 295 1061.788 315.250 C 1038.675 342.200, 996.894 390.799, 985.030 404.532 C 979.789 410.600, 973.250 418.226, 970.500 421.478 C 967.750 424.730, 962.324 431.015, 958.443 435.445 C 954.562 439.875, 935.003 462.625, 914.978 486 C 894.954 509.375, 878.296 528.725, 877.960 529 C 877.625 529.275, 873.334 534.252, 868.425 540.061 C 859.839 550.221, 851.101 560.391, 811.027 606.865 C 793.437 627.265, 792.535 628.141, 791.052 626.266 C 790.199 625.186, 738.650 550.213, 676.500 459.661 L 563.500 295.021 431.181 295.010 L 298.862 295 304.292 302.750 M 407.565 356.742 C 408.559 358.259, 433.281 393.700, 462.504 435.500 C 517.927 514.776, 735.717 826.486, 875.781 1027 C 920.539 1091.075, 957.705 1144.066, 958.373 1144.758 C 959.327 1145.747, 972.359 1145.961, 1019.267 1145.758 L 1078.947 1145.500 922.776 922 C 836.881 799.075, 712.520 621.100, 646.418 526.500 L 526.232 354.500 465.996 354.242 L 405.760 353.984 407.565 356.742" stroke="none" fill="#040404" fill-rule="evenodd"/>
+            </svg>
+          </span>
+          <a href="mailto:klaus.hamperl@einhell.com">@klaus.hamperl</a>
+        </li>
+        <li>
+          <span class="mdi mdi-linkedin"/>
+          <a href="https://www.linkedin.com/in/klaus-hamperl-99a1a8152/">klaus-hamperl</a>
+        </li>
+      </ul>
+      </div>
+      </div>
+      <aside class="notes">
+        In Short some facts about me...<br/>
+        This Presentation will be available on my Github<br/>
+      </aside>
+    </section>
+    <section data-background-image="./assets/presentation-bg-logo.png">
+      <section>
+        <aside class="notes">
+          At first clearify what are MF<br/>
+        </aside>
+      <h1>What are Micro Frontends</h1>
+      </section>
+      <section>
+        <img src="./assets/memes/mf-car.webp" alt="mf meme" />
+      </section>
+      <section>
+        <aside class="notes">
+          Stable frontend are hard to reach. Even hard with working on it with more dedicated teams.<br/>
+          Reusability - do not reinvent the wheel.
+        </aside>
+        <h3>The Problem</h3>
+        <p>Good, stable and maintainable frontends are hard to reach! <br>It gets even harder if there working more teams on one application.</p>
+        <p>Another big topic is reusability. We won't reinvent the wheel over and over again.</p>
+      </section>
+      <section>
+        <aside class="notes">
+          well known in backend<br/>
+          distributed services<br/>
+          easy to maintain, to update and feature add
+        </aside>
+        <h3>One solution - Micro Frontends</h3>
+        <p>In backend development a well known solution:<br/> <b>distributed services!</b><br> Small, specialized applications for one job.</p>
+        <p>Easy to maintain, easy to update and easy to add features.</p>
+      </section>
+      <section>
+        <aside class="notes">
+          Backend idea to fronten<br/>
+          split up the monolith<br/>
+        </aside>
+        <h3>Let's put this idea to the Frontend!</h3>
+        <p>Why not split up the monolithic frontend up to small services.</p>
+      </section>
+    </section>
+    <section data-background-image="./assets/presentation-bg-logo.png">
+      <section>
+        <aside class="notes">
+          for the first examples - some history<br/>
+        </aside>
+      <h1>The History of Micro-Frontends</h1>
+      </section>
+      <section id="history">
+        <aside class="notes">
+          <ul style="font-size: 16px">
+            <li>2011: “Microservices” themselves premiered at an event for software architects in 2011, where the term was used to describe a style of architecture that many attendees were experimenting with at the time. Netflix and Amazon were among the early pioneers of microservices. Later on Zalando as well with thier own solution mosaic</li>
+            <li>Nov 2016: After the great success of the Microservices architecture, Thought Works added to the technology radar the term “Microfrontends” for the first time in Nov 2016, as a frontend architecture similar to microservices for frontend development.</li>
+          </ul>
+        </aside>
+        <h3>Where appeared the term Micro-Frontend?</h3>
+        <ul>
+          <li class="fragment fade-right">2011: “Microservices” themselves premiered at an event for software architects</li>
+          <li class="fragment fade-right">Nov 2016: After the great success of the Microservices architecture, Thought Works added to the technology radar</li>
+        </ul>
+        <img class="fragment fade-in-then-out radar-img" src="assets/techradar.png" alt="techradar" />
+
+      </section>
+      <section>
+        <aside class="notes">
+          <ul style="font-size: 16px">
+            <li>Nov 2017, Thought Works recommended SPA for Microfrontends implementation.</li>
+            <li>Oct 2020: By the end of 2020, Zack Jackson released his masterpiece “Module Federation” as a plugin in Webpack 5. The Module Federation Plugin changed the world of Microfrontends to a totally new level. Now, you can include a remote component to your project as you have developed it locally without depending on the build or deployment or even have a webserver to run it. This is the future of Microfonrtneds.</li>
+            <li>Apr 2021: Thoughtworks started to recommend Module Federation for Microfrontends implementations</li>
+            <li>Microfrontends are still in the early stages compared to Microservices. Writers did not agree on the way to write it. I started with Micro Frontend then changed to Micro-Frontend. Finally, I have decided to use a one-word “Microfrontend” similar to “Microservice.”</li>
+          </ul>
+        </aside>
+        <ul>
+          <li>Nov 2017, Thought Works recommended Spa for Microfrontends implementation</li>
+          <li class="fragment fade-right">Oct 2020: By the end of 2020, Zack Jackson released his masterpiece “Module Federation” as a plugin in Webpack 5</li>
+          <li class="fragment fade-right">Apr 2021: Thoughtworks started to recommend Module Federation for Microfrontends implementations</li>
+          <li class="fragment fade-right">till now: Microfrontends are still in the early stages compared to Microservices</li>
+        </ul>
+      </section>
+    </section>
+    <section data-background-image="./assets/presentation-bg-logo.png">
+      <section>
+        <aside class="notes">
+          <p>let's talk about some pros and cons of mf.</p>
+        </aside>
+      <h1>Pros...</h1>
+      </section>
+      <section>
+        <aside class="notes">
+          <p>transition step by step - feature by feature</p>
+        </aside>
+        <div>
+          <h3>Easy transition from monolithic to Micro Frontend</h3>
+          <p class="fragment fade-in">
+            If you have a monolithic frontend you can easily transit it <br/> to a Micro Frontend. <br>
+            Step by step, feature by feature.
+          </p>
+        </div>
+      </section>
+      <section>
+        <aside class="notes">
+          <p>smaller and easier to maintain per definition.</p>
+        </aside>
+        <div>
+        <h3>Smaller codebase</h3>
+        <p class="fragment fade-in">
+          A micro frontend is smaller and easier to maintain per definition.
+        </p>
+        </div>
+      </section>
+      <section>
+        <aside class="notes">
+          <p>can be deployed independently from other Parts</p>
+        </aside>
+        <div>
+          <h3>Independent Deployment</h3>
+          <p class="fragment fade-in">
+            If there is a special feature for your application it can be deployed independently from other parts.
+            <img src="./assets/deplyoment-schema.jpg" alt="Deployment Schema"  />
+          </p>
+        </div>
+      </section>
+      <section>
+        <aside class="notes">
+          <p>Different parts of a frontend Application can be developed by different Teams</p>
+        </aside>
+        <div>
+          <h3>Independent Teams</h3>
+          <p class="fragment fade-in">
+            Different parts of a frontend application can be developed by different teams. Even in different frameworks...
+          </p>
+        </div>
+      </section>
+      <section>
+        <aside class="notes">
+          <p>But do we want this. Image found on x posted by Eduardo</p>
+        </aside>
+        <h3>But...</h3>
+        <img src="./assets/memes/vue-or-react.jpeg" alt="mf-meme" />
+      </section>
+    </section>
+    <section data-background-image="./assets/presentation-bg-logo.png">
+      <section>
+        <aside class="notes">
+          <p>to the contras now</p>
+        </aside>
+      <h1>...and Cons</h1>
+      </section>
+      <section>
+        <aside class="notes">
+          <p>deployment and infrastructure are harder to manage</p>
+        </aside>
+        <div>
+          <h3>Infrastructure and deployment</h3>
+          <p class="fragment fade-in">
+            For every part of the micro frontend you need a separate entry point, separate (sub)domain, a separate deployment and maybe separate monitoring.
+          </p>
+        </div>
+      </section>
+      <section>
+        <aside class="notes">
+          <p>communiction between apps can be complex to manage</p>
+          <p>Specially when dependency sharing, i18n or user authentication comes in.</p>
+        </aside>
+        <div>
+          <h3>Complexity could increase</h3>
+          <p class="fragment fade-in">
+            Even the code base for on part of the micro frontend is smaller, the complexity of the handling of all parts
+            and the communication between the frontends and the backend could be increase.<br>
+            Specially when dependency sharing, i18n or user authentication comes in.
+          </p>
+        </div>
+      </section>
+      <section>
+        <aside class="notes">
+          <p>suites hard on small projects</p>
+        </aside>
+        <div>
+          <h3>Suites hard on small projects</h3>
+          <p class="fragment fade-in">
+            Because of this points it often make no sense to take this approach in small projects.
+          </p>
+        </div>
+      </section>
+    </section>
+    <section data-background-image="./assets/presentation-bg-logo.png">
+      <aside class="notes">
+        <p>In short, Micro Frontends are about breaking big and scary things down into smaller things</p>
+      </aside>
+      <h1>Conclusion</h1>
+      <p class="fragment fade-up">
+        In short, micro frontends are about breaking big and scary things down into smaller, more manageable pieces and then clearly naming the dependencies between them. </p>
+      <p class="fragment fade-up">Our technology choices, our code bases, our teams and our release processes should all be able to work and evolve independently of each other.</p>
+    </section>
+    <section data-background-image="./assets/presentation-bg-logo.png">
+      <section>
+        <h1>Micro frontends with Vue and Vite</h1>
+      </section>
+      <section>
+        <aside class="notes">
+          <p>This Plugin is inspired by Webpack Module Federation (as we heard in the history part), and it is compatible with it.</p>
+        </aside>
+        <p>To make this magic happen we need the Vite plugin:</p>
+        <p><b>vite-plugin-federation</b></p>
+        <p>by originjs</p>
+        <p>This plugin is inspired by Webpack module federation, and it is compatible with it.</p>
+      </section>
+      <section>
+        <aside class="notes">
+          <p>At minimum 1 Host and 1 Remote are needed</p>
+        </aside>
+        <h2>Usage</h2>
+        <p>Using module federation requires at least 2 (Vue-)projects. One project act as a wrapper (host application) the other(s) as remote applications</p>
+      </section>
+      <section>
+        <aside class="notes">
+          <p>We build up our application out of multiple SPAs</p>
+        </aside>
+        <h2>How it works</h2>
+        <p></p>
+        <p>We build up our application out of multiple SPAs - hosted on their own domain.</p>
+        <img src="./assets/mf-schema.png" alt="mf-schema" width="600"/>
+      </section>
+    </section>
+    <section data-background-image="./assets/presentation-bg-logo.png">
+      <section>
+        <aside class="notes">
+          <p>Project setup - linkt to gitlab</p>
+        </aside>
+        <h1>Set up your project</h1>
+        <h2>Get started with Vite module federation</h2>
+        <a href="https://github.com/originjs/vite-plugin-federation">vite-plugin-federation</a>
+      </section>
+      <section>
+        <h2>Module Federation</h2>
+        <img class="fragment fade-in" src="./assets/memes/module-federation.webp" alt="mf-meme" style="width: 500px" />
+      </section>
+      <section>
+        <h2>Let's get started!</h2>
+        <p class="fragment fade-up">
+          Open your existing Vue-Project or create a new one.
+        </p>
+        <div class="fragment fade-up">
+        <h3>
+          Installation
+        </h3>
+        <pre>
+          <code data-trim data-noescape>
+            npm install @originjs/vite-plugin-federation --save-dev
+          </code>
+        </pre>
+        or
+        <pre>
+          <code data-trim data-noescape>
+            yarn add @originjs/vite-plugin-federation --dev
+          </code>
+        </pre>
+        </div>
+      </section>
+      <section>
+        <aside class="notes">
+          <p>Config for the remote App</p>
+        </aside>
+        <h2>Remote App Configuration</h2>
+        <p>All configs have to be done in vite.config.js</p>
+        <pre><code data-line-numbers="1-15|2|5|6-12">// vite.config.js
+import federation from "@originjs/vite-plugin-federation";
+export default {
+    plugins: [
+        federation({
+            name: 'remote-app',
+            filename: 'remoteEntry.js',
+            // Modules to expose
+            exposes: {
+                './RemoteButton': './src/RemoteButton.vue',
+            },
+            shared: ['vue']
+        })
+    ]
+}
+</code></pre>
+      </section>
+      <section>
+        <aside class="notes">
+          <p>Config for the host app</p>
+        </aside>
+        <h2>Host App Configuration</h2>
+        <p>All configs are have to be done in vite.config.js</p>
+        <pre><code data-line-numbers="1-13|2|5|6-12">// vite.config.js
+import federation from "@originjs/vite-plugin-federation";
+export default {
+    plugins: [
+        federation({
+            name: 'host-app',
+            remotes: {
+                remote_app: "http://localhost:5001/assets/remoteEntry.js",
+            },
+            shared: ['vue']
+        })
+    ]
+}
+</code></pre>
+      </section>
+      <section>
+        <aside class="notes">
+          <p>use the remote in the host</p>
+        </aside>
+        <h2>Using the remote module on the host side</h2>
+        <pre><code data-line-numbers="1-14|5|11"><script type="text/template"><script setup lang="ts">
+  import { createApp, defineAsyncComponent } from "vue";
+  const app = createApp(Layout);
+  ...
+  const RemoteButton = defineAsyncComponent(() => import("remote_app/Button"));
+  app.component("RemoteButton", RemoteButton);
+  app.mount("#root");
+
+<template>
+  <div>
+    <RemoteButton />
+  </div>
+</template>
+</script>
+</code></pre>
+      </section>
+    </section>
+    <section data-background-image="./assets/presentation-bg-logo.png">
+      <h2>The config in detail</h2>
+      <div class="fragment fade-right">
+        <pre><code>name: string</code></pre>
+        <p>Name of the module - needed for the import in the host app</p>
+      </div>
+      <div class="fragment fade-right">
+        <pre><code>filename: string</code></pre>
+        <p>Name of the remote entry file - default remoteEntry.js</p>
+      </div>
+      <div class="fragment fade-right">
+        <pre><code>exposes</code></pre>
+        <p>List of components exposed from the remote to the public. Required in remote module</p>
+      </div>
+    </section>
+    <section data-background-image="./assets/presentation-bg-logo.png">
+      <h2>The config in detail</h2>
+      <div class="fragment fade-right">
+        <pre><code>remotes</code></pre>
+        <p>List of components which are imported from one or more remote modules</p>
+      </div>
+      <div class="fragment fade-right">
+        <pre><code>shared</code></pre>
+        <b>Dependencies are shared by local and remote modules.</b><br/> Local modules need to configure the dependencies of all used remote modules; remote modules need to configure the dependencies of externally provided components.</p>
+      </div>
+    </section>
+    <section data-background-image="./assets/presentation-bg-logo.png">
+      <h2>The Config in detail - Shared</h2>
+      <section>
+      <p class="fragment fade-up">
+        The shared option has some more possibilities to configure.
+      </p>
+
+      <div class="fragment fade-right">
+        <pre><code>version: string</code></pre>
+        <p>Only works on host side, the version of the shared module provided is version of the package.json file in the shared package by default, you need to configure it manually only if you can't get version by this method.</p>
+      </div>
+      </section>
+      <section data-background-image="./assets/presentation-bg-logo.png">
+        <div class="fragment fade-right">
+          <pre><code>requiredVersion: true</code></pre>
+          <p>Only for the remote side, it specifies the required version of the host shared used, when the version of the host side does not meet the requiredVersion requirement, it will use its own shared module, provided that it is not configured with import=false, which is not enabled by default.</p>
+        </div>
+        <div class="fragment fade-right">
+          <pre><code>generate: boolean</code></pre>
+          <p>generate a shared chunk file or not , if you make sure that the host side has a share that can be used, then you can set not to generate a shared file on the remote side to reduce the size of the remote's chunk file, which is only effective on the remote side, the host side will generate a shared chunk no matter what.</p>
+        </div>
+      </section>
+    </section>
+    <section data-background-image="./assets/presentation-bg.jpg">
+      <section>
+      <h2>Live Examples from</h2>
+        <img src="./assets/einhell.svg" alt="Einhell Germany AG" />
+      </section>
+      <section>
+        <img src="./assets/memes/microfrontends-everywhere.jpg" alt="mf-meme" />
+      </section>
+      <section>
+        <h2>Two examples for Micro frontend usages</h2>
+        <p class="fragment fade-right">At the moment we use the micro frontend approach for two different kinds of apps.</p>
+        <p class="fragment fade-right">We use this for forms on our websites.</p>
+        <p class="fragment fade-right">And for some of our business applications.</p>
+      </section>
+    </section>
+    <section data-background-image="./assets/presentation-bg.jpg">
+      <section>
+        <h2>Let's start with Web Forms</h2>
+      </section>
+      <section>
+        <h2>Customer Complaint - Form</h2>
+        <h3>Warranty Repair Services for our end customers</h3>
+        <img src="./assets/cc/cc-1-login.png" alt="cc-from" />
+      </section>
+      <section>
+        <h2>In complete this Form consists of 8 individual applications.</h2>
+      </section>
+      <section>
+        <h2>1. The Host</h2>
+        <p class="fragment fade-up">
+          The host application combines all remotes in one working form.<br/>This app will be embedded in the website
+        </p>
+      </section>
+      <section>
+        <p>
+          vite.config for host:
+        </p>
+        <pre class="fragment fade-up"><code data-line-numbers="1-34|4|6|8-10|11|12-20|21-30">// vite.config.js
+...
+import federation from "@originjs/vite-plugin-federation";
+export default (data: {mode: string, command: string, ssrBuild: boolean}) => {
+
+    // some configuration logic...
+
+    return defineConfig({f
+    plugins: [
+        federation({
+            name: 'customer-complaint-form',
+            remotes: {
+                'e-mf-service': 'https://..../remoteEntry.js'
+                'mf-contact-data': 'https://..../remoteEntry.js'
+                'mf-address-book': 'https://..../remoteEntry.js'
+                'mf-article-search': 'https://..../remoteEntry.js'
+                'mf-article-details': 'https://..../remoteEntry.js'
+                'mf-spare-part-select': 'https://..../remoteEntry.js'
+                'mf-hotspot-app': 'https://..../remoteEntry.js'
+            },
+            shared: [
+              'vue',
+              'pinia',
+              'axios',
+              'keycloak-js',
+              '@shared/e-vue-components',
+              '@vuelidate/core',
+              'vue-easy-lightbox',
+              'friendly-challenge'
+            ]
+          ...
+        })
+    ]
+    })
+</code></pre>
+      </section>
+      <section>
+        <p>Usage in App.vue</p>
+        <pre class="fragment fade-up"><code data-line-numbers="1-43|5-7|8-10|8-10|11-22|24|27|28-41">// App.vue
+...
+import { useI18n } from 'vue-i18n'
+...
+const ContactData = defineAsyncComponent({
+  loader: () => import('mf-contact-data/ContactData')
+})
+const AddressBook = defineAsyncComponent({
+  loader: () => import('mf-address-book/AddressBook')
+})
+const ArticleSearch = defineAsyncComponent({
+  loader: () => import('mf-article-search/ArticleSearch')
+})
+const ArticleDetails = defineAsyncComponent({
+  loader: () => import('mf-article-details/ArticleDetails')
+})
+const SparePartSelect = defineAsyncComponent({
+  loader: () => import('mf-spare-part-select/SparePartSelect')
+})
+const HotspotApp = defineAsyncComponent({
+  loader: () => import('mf-hotspot-app/HotspotApp')
+})
+</script>
+<template>
+  <div class="__customer-complaint" ref="customerComplaintElement">
+    ...
+    <AddressBook
+      @selectAddress="ccService.selectDataFromAddressBook"
+      @clearAddress="ccService.clearAddress"
+      :locale="coreStore.locale"
+    ></AddressBook>
+    <ContactData
+        :locale="coreStore.locale"
+        :save-button="{
+          icon: 'mdi-chevron-right',
+          label: t('customerComplaint.actions.save')
+        }"
+        :field="{
+          email: true,
+          firstName: true,
+          phone: false,
+          lastName: true,
+          city: true,
+          country: true,
+          zip: true,
+          street: true,
+          streetNumber: true
+        }"
+        :suppliers="coreStore.supplierSelect"
+        @step-done="ccService.saveStepContactData(customerComplaintElement)"
+    ></ContactData>
+  </div>
+</template>
+</code></pre>
+      </section>
+      <section>
+        <h2>2. The Remotes</h2>
+        <p>
+          Each remote provides one part of the form - for example an Article-Search.
+        </p>
+        <div class="r-stack">
+          <img src="assets/cc/cc-3-article-search.png" alt="cc-form" class="fragment current-visible" data-fragment-index="0">
+          <img src="assets/cc/cc-3-article-search-result.png" alt="cc-form" class="fragment fade-in" data-fragment-index="1">
+        </div>
+      </section>
+      <section>
+        <p>
+          vite.config for the remote: Article-Search:
+        </p>
+        <pre class="fragment fade-up"><code data-line-numbers="1-33|4|6|8-10|11|12-14|15-19|20-29">// vite.config.js
+...
+import federation from "@originjs/vite-plugin-federation";
+export default (data: {mode: string, command: string, ssrBuild: boolean}) => {
+
+    // some configuration logic...
+
+    return defineConfig({
+    plugins: [
+        federation({
+            name: 'mf-article-search',
+            remotes: {
+                'e-mf-service': 'https://..../remoteEntry.js'
+            },
+           exposes: {
+              './ArticleSearchI18n': './src/modules/core/application/service/i18n.service.ts',
+              './ArticleSearch': './src/modules/productSearch/presentation/views/ProductSearch.vue',
+              './ArticleSearchStore': './src/modules/productSearch/infrastructure/store/article.store.ts'
+            },
+            shared: [
+              'vue',
+              'pinia',
+              'axios',
+              'keycloak-js',
+              '@shared/e-vue-components',
+              '@vuelidate/core',
+              'vue-easy-lightbox',
+              'friendly-challenge'
+            ]
+          ...
+        })
+    ]
+    })
+</code></pre>
+      </section>
+      <section>
+        <aside class="notes">
+          <ul>
+            <li>Contact Details</li>
+            <li>Article Search</li>
+            <li>Error Description</li>
+            <li>Spare Part identification</li>
+            <li>Spare Part Table and Hotspot</li>
+            <li>Summery</li>
+          </ul>
+        </aside>
+        <h2>The Final App</h2>
+        <div class="r-stack">
+          <img src="./assets/cc/cc-2-contact-data.png" alt="cc-form" class="fragment current-visible" data-fragment-index="0">
+          <img src="./assets/cc/cc-3-article-search.png" alt="cc-form" class="fragment fade-in-then-out" data-fragment-index="1">
+          <img src="./assets/cc/cc-3-article-search-result.png" alt="cc-form" class="fragment fade-in-then-out" data-fragment-index="2">
+          <img src="./assets/cc/cc-4-error-description.png" alt="cc-form" class="fragment fade-in-then-out" data-fragment-index="3">
+          <img src="./assets/cc/cc-5a-spare-parts.png" alt="cc-form" class="fragment fade-in-then-out" data-fragment-index="4">
+          <img src="./assets/cc/cc-5b-spare-parts.png" alt="cc-form" class="fragment fade-in-then-out" data-fragment-index="5">
+          <img src="./assets/cc/cc-6-summary.png" alt="cc-form" class="fragment fade-in" data-fragment-index="6">
+        </div>
+      </section>
+    </section>
+    <section data-background-image="./assets/presentation-bg.jpg">
+      <section>
+        <h2>Inhouse Business Applications</h2>
+        <h3>Einhell Webmanagement System</h3>
+        <h3>EWMS</h3>
+        <img class="fragment fade-up" src="./assets/ewms/ewms-1-dashboard.png" alt="ewms">
+      </section>
+      <section>
+        <h2>EWMS - Structure</h2>
+        <div class="r-stack" style="width: 105%; margin: 0 0 0 -140px;">
+        <img class="fragment current-visible" style="max-width: 125%;" src="./assets/ewms-schema.png" width="1600" alt="ewms">
+        <img class="fragment fade-in-then-out" style="max-width: 125%;" src="./assets/ewms/ewms-1-dashboard-active-shoplocator.png" width="1600" alt="emws">
+        <img class="fragment fade-in-then-out" style="max-width: 125%;" src="./assets/ewms/ewms-3-shoplocator.png" width="1600" alt="emws">
+        <img class="fragment fade-in-then-out" style="max-width: 125%;" src="./assets/ewms/ewms-3-shoplocator-detail.png" width="1600" alt="emws">
+        <img class="fragment fade-in-then-out" style="max-width: 125%;" src="./assets/ewms/ewms-1-dashboard-active.png" width="1600" alt="emws">
+        <img class="fragment fade-in" style="max-width: 125%;" src="./assets/ewms/ewms-2-awms.png" width="1600" alt="emws">
+        </div>
+      </section>
+      <section>
+        <h2>Challenges</h2>
+        <p class="fragment fade-right">1. The app will be expanded over time from different teams.</p>
+        <p class="fragment fade-right">2. Each app has its own routings.</p>
+        <p class="fragment fade-right">3. Each app has its own translation files.</p>
+        <p class="fragment fade-right">4. A store for sharing auth-data was needed for each app.</p>
+        <p class="fragment fade-right">5. The host application should always be available - even if one of the modules is offline.</p>
+      </section>
+    </section>
+    <section data-background-image="./assets/presentation-bg.jpg">
+      <h2>1. Expand the app with different teams</h2>
+      <p class="fragment fade-up">
+        That's why we chose the micro frontend approach.
+      </p>
+      <p class="fragment fade-up">Every team can work independently.</p>
+    </section>
+    <section data-background-image="./assets/presentation-bg.jpg">
+      <section>
+        <h2>2. Each app has its own routings</h2>
+        <p class="fragment fade-up">
+          There can only be one active instance of the Vue-Router.
+        </p>
+        <p class="fragment fade-up">This active instance is in host app.</p>
+        <p class="fragment fade-up">So the routes have to be in the host app as well.</p>
+      </section>
+      <section>
+        <h2>Set up routing</h2>
+        <p class="fragment fade-up">First setup routes as usually:</p>
+        <pre class="fragment fade-up">
+          <code data-line-numbers="1-20">
+//routes.ts
+import type { RouteRecordRaw } from 'vue-router'
+import AwmsDashboard from '@/modules/dashboard/presentation/view/AwmsDashboard.vue'
+...
+
+    const routes: RouteRecordRaw[] = [
+      {
+         path: '',
+          name: 'awms-home',
+         redirect: '/awms'
+      },
+      {
+        path: '/awms',
+        name: 'AWMS-Dashboard',
+        component: AwmsDashboard
+      },
+      ...
+    ]
+    ...
+          </code>
+        </pre>
+      </section>
+      <section>
+        <h2>Expose Routes</h2>
+        <p class="fragment fade-up">Second the remote apps have to expose their own routes:</p>
+        <pre class="fragment fade-up">
+          <code data-line-numbers="1-20|17">
+//vite.config.ts
+...
+import vue from '@vitejs/plugin-vue'
+import federation from '@originjs/vite-plugin-federation'
+...
+
+plugins: [
+  vue(),
+  federation({
+    name: 'ewms-awms',
+    filename: 'remoteEntry.js',
+    exposes: {
+      './App': './src/App.vue',
+      './AwmsI18n': './src/modules/core/application/service/i18n.service.ts',
+      './AppService': './src/modules/dashboard/application/service/appRegister.service.ts',
+      './AwmsRoutes': './src/modules/core/application/router/routes.ts',
+      './AwmsStore': './src/modules/core/infrastructure/store/coreStore.ts'
+    },
+...
+          </code>
+        </pre>
+      </section>
+      <section>
+        <h2>Use Remote Routes in Host - 1</h2>
+        <p class="fragment fade-up">Third import the routes in host:</p>
+        <pre class="fragment fade-up">
+          <code data-line-numbers="1-16|14">
+//vite.config.ts
+...
+import vue from '@vitejs/plugin-vue'
+import federation from '@originjs/vite-plugin-federation'
+...
+
+plugins: [
+  vue(),
+  federation({
+    name: 'ewms-vue-main',
+    remotes: {
+      ...
+      'ewms-awms': 'https://...../awms/remoteEntry.js',
+    },
+...
+          </code>
+        </pre>
+      </section>
+      <section>
+        <h2>Use Remote Routes in host - 2</h2>
+        <p class="fragment fade-up">Use the imported routes on the host:</p>
+        <pre class="fragment fade-up">
+          <code data-line-numbers="1-21|4-9|13-20|14|15|4,16|18-19">
+//routes.ts
+...
+  let routes: RouteRecordRaw[] = [
+    {
+      path: '/',
+      name: 'home',
+      redirect: '/dashboard'
+    },
+  ...
+  ]
+
+   try {
+      const awmsWidget = await import('ewms-awms/AwmsRoutes')
+      if (awmsWidget && awmsWidget.default && awmsWidget.default.routes) {
+        routes = [...routes, ...(await awmsWidget.default.routes)]
+      }
+    } catch (err) {
+      console.error('Some fancy error handling', err)
+    }
+...
+          </code>
+        </pre>
+      </section>
+      <section>
+        <h2>Done</h2>
+        <p class="fragment fade-up">
+          Now all routes from the remote apps are available in the host application
+        </p>
+      </section>
+    </section>
+    <section data-background-image="./assets/presentation-bg.jpg">
+      <section>
+        <aside class="notes">
+          in a i18n hook<br>
+          make an dynamic import of the lang file end expose this<br>
+          in the vite.config federation plugin
+        </aside>
+        <h2>3. Each App has it's own Translation Files</h2>
+        <p class="fragment fade-up">
+          Same problem with internationalization: <br/>There can only be on active instance of the Vue-I18n.
+        </p>
+        <p class="fragment fade-up">Let's solve this one the same way as with the routes before.</p>
+      </section>
+      <section>
+        <h2>Set up I18n</h2>
+        <p class="fragment fade-up">First set up i18n as usually in the remote app. But prepare a function which returns the messages for your selected language!</p>
+        <pre class="fragment fade-up">
+          <code data-line-numbers="1-16|13-15">
+//i18n.service.ts
+import { createI18n } from 'vue-i18n'
+import en from '@/lang/en.json'
+...
+    const setupI18n = (options = { locale: 'en_GB' }): I18n => {
+    const i18n = createI18n({
+      ...options,
+      ...
+    })
+    ...
+
+    const exposeAwmsMessages = async (locale: string) => {
+      return await import(`../../../../lang/${locale}.json`)
+    }
+
+          </code>
+        </pre>
+      </section>
+      <section>
+        <h2>Expose Messages</h2>
+        <p class="fragment fade-up">Expose the message export function:</p>
+        <pre class="fragment fade-up">
+          <code data-line-numbers="1-20|15">
+//vite.config.ts
+...
+import vue from '@vitejs/plugin-vue'
+import federation from '@originjs/vite-plugin-federation'
+...
+
+plugins: [
+  vue(),
+  federation({
+    name: 'ewms-awms',
+    filename: 'remoteEntry.js',
+    exposes: {
+      './App': './src/App.vue',
+      './AwmsI18n': './src/modules/core/application/service/i18n.service.ts',
+      './AppService': './src/modules/dashboard/application/service/appRegister.service.ts',
+      './AwmsRoutes': './src/modules/core/application/router/routes.ts',
+      './AwmsStore': './src/modules/core/infrastructure/store/coreStore.ts'
+    },
+...
+          </code>
+        </pre>
+      </section>
+      <section>
+        <h2>Use Remote I18n Messages in Host - 1</h2>
+        <p class="fragment fade-up">Third import the messages in host:</p>
+        <pre class="fragment fade-up">
+          <code data-line-numbers="1-16|14">
+//vite.config.ts
+...
+import vue from '@vitejs/plugin-vue'
+import federation from '@originjs/vite-plugin-federation'
+...
+
+plugins: [
+  vue(),
+  federation({
+    name: 'ewms-vue-main',
+    remotes: {
+      ...
+      'ewms-awms': 'https://...../awms/remoteEntry.js',
+    },
+...
+          </code>
+        </pre>
+      </section>
+      <section>
+        <h2>Use Remote i18n messages in Host - 2</h2>
+        <p class="fragment fade-up">Use the imported messages on the host:</p>
+        <pre class="fragment fade-up">
+          <code data-line-numbers="1-31|4,7-9|13-23|14|15|16|7,17-19|25-29">
+//i18n.service.ts
+import { createI18n } from 'vue-i18n'
+import en from '@/lang/en.json'
+...
+  const setupI18n = async (options = { locale: 'en' }): Promise<I18n> => {
+    let messages = {
+      ...en
+    }
+  ...
+  ]
+
+    try {
+      const awmsI18n = await import('ewms-awms/AwmsI18n');
+      const { exposeAwmsMessages } = awmsI18n.default.useI18nService();
+      const awmsMessages = await exposeAwmsMessages(options.locale);
+      messages = {
+        ...messages,
+        ...awmsMessages.views,
+      }
+    } catch(err){
+      console.error('AWMS not available', err)
+    }
+
+    const i18n = createI18n({
+      ...options,
+      messages: { en: messages },
+      fallbackLocale: 'en'
+    })
+...
+          </code>
+        </pre>
+      </section>
+      <section>
+        <h2>Done</h2>
+        <p class="fragment fade-up">
+          Now the translated messages from the remote app are available in the host as well
+        </p>
+      </section>
+    </section>
+    <section data-background-image="./assets/presentation-bg.jpg">
+      <section>
+        <h2>4. A Store for sharing auth data was needed for each app</h2>
+        <p>The solution: a new microservice for handling authentication: <br/><b>e-mf-service</b></p>
+      </section>
+      <section>
+        <h2>The e-mf-service in Detail</h2>
+        <p class="fragment fade-up">The e-mf-service provides 3 functions that can be used in all other services.</p>
+        <ul class="fragment fade-up">
+          <li>A Global Pinia Store</li>
+          <li class="fragment fade-right">An authentication service (via Keycloak)</li>
+          <li class="fragment fade-right">An axios service (creates an interceptor for all axios calls)</li>
+        </ul>
+      </section>
+      <section>
+        <h2>The Global Store</h2>
+        <p class="fragment fade-up">In this global Pinia Store all necessary data for a whole app can be stored.</p>
+        <p class="fragment fade-up">For example the logged-in user and his roles.</p>
+      </section>
+      <section>
+        <h2>The Authentication Service</h2>
+        <p class="fragment fade-up">This service takes care of the login process to the dedicated authentication platform:</p>
+        <p class="fragment fade-up">login, logout, token- and role-management.</p>
+        <pre class="fragment fade-up">
+          <code data-line-numbers="1-36|6|7-18|19-24|25-27|28|29|30|31">
+...
+import type {KeycloakOnLoad} from "keycloak-js";
+import Keycloak from "keycloak-js";
+
+export function useKeycloak() {
+    const initKeycloak = async (kcOptions: KcInitOptions) => {
+        // Set Options from params
+        const initOptions: KcInitOptions = {
+            url: kcOptions.url,
+            realm: kcOptions.realm,
+            clientId: kcOptions.clientId,
+            onLoad: kcOptions.onLoad || 'login-required'
+        }
+
+        // Init and return Keycloak
+        return new Keycloak(initOptions)
+    }
+    const loginUser = async (keycloak: Keycloak, onLoad: KeycloakOnLoad = 'login-required') => {
+        return keycloak.init({
+            onLoad: onLoad,
+            checkLoginIframe: false
+        })
+    }
+    const logoutUser = (keycloak: Keycloak) => {
+        keycloak.logout()
+    }
+    const loadUserProfile = (keycloak: Keycloak) => {...}
+    const refreshToken = async (keycloak: Keycloak) => {...}
+    const hasRole = (keycloak: Keycloak, role: string) => {...}
+    const token = (keycloak: Keycloak): string => {...}
+
+    const loginLink = (keycloak: Keycloak, redirect: string) => {...}
+
+    return { initKeycloak, ..., token }
+}
+          </code>
+        </pre>
+      </section>
+      <section>
+        <h2>The Axios Service</h2>
+        <p class="fragment fade-up">This service is connected to the authentication service.</p>
+        <p class="fragment fade-up">It creates an interceptor for axios which applys a valid token to each call.</p>
+        <pre class="fragment fade-up">
+          <code data-line-numbers="1-20|2-4|6|7|8|9-14|15|19">
+import axios from 'axios'
+import { useKeycloak } from "@/services/keycloak.service";
+import type Keycloak from 'keycloak-js'
+
+export function useAxiosService() {
+    const createInterceptor = (keycloak: Keycloak) => {
+        axios.interceptors.request.use(
+            async (config) => {
+                await useKeycloak().refreshToken(keycloak)
+                config.headers.Authorization = useKeycloak().token(keycloak)
+                config.withCredentials = true
+                return config
+            },
+            (error) => Promise.reject(error)
+        )
+    }
+
+    return { createInterceptor }
+}
+          </code>
+        </pre>
+      </section>
+      <section>
+        <h2>Vite Config for e-mf-service</h2>
+        <pre class="fragment fade-up">
+          <code data-line-numbers="1-21|2-4|7|8,10|11|13-17|18">
+import { defineConfig } from 'vite'
+import vue from '@vitejs/plugin-vue'
+import federation from "@originjs/vite-plugin-federation";
+...
+
+export default defineConfig({
+  plugins: [
+    vue(),
+    federation({
+      name: 'e-mf-service',
+      filename: 'remoteEntry.js',
+      exposes: {
+        './globalStore': './src/stores/global.store.ts',
+        './keycloakService': './src/services/keycloak.service.ts',
+        './axiosService': './src/services/axios.service.ts'
+      },
+      shared: ['vue', 'pinia', 'axios', 'keycloak-js', '@shared/e-vue-components'],
+    }),
+  ...
+})
+          </code>
+        </pre>
+      </section>
+    </section>
+    <section data-background-image="./assets/presentation-bg.jpg">
+      <section>
+        <h2>5. The host application should always be available - even one of the modules are offline</h2>
+      </section>
+      <section>
+        <p>The first check whether a service is available or not happens in the main.ts file of the host application by loading all stores of the remote services.</p>
+        <pre class="fragment fade-up">
+          <code data-line-numbers="1-44|3-7|9-17|19-23|25-40|28|29|30|31-33|43">//main.ts
+...
+const routes = await useRoutes().initRoutes()
+const router = createRouter({
+  history: createWebHistory(import.meta.env.BASE_URL),
+  routes
+})
+
+    // Init I18n
+    const i18n = await useI18nService().setupI18n()
+
+    // Create Vue App
+    const app = createApp(App)
+    app.provide<I18n>('i18nInstance', i18n)
+    app.use(router)
+    app.use(i18n)
+    app.use(createPinia())
+
+    // Init Pinia Stores
+    const coreStore = useCoreStore()
+    const globalStore = useGlobalStore()
+    globalStore.keycloak = await useKeycloak().initKeycloak()
+    globalStore.keycloakUser = await useKeycloak().loadUserProfile()
+
+    // Load micro frontend modules
+    ...
+    try {
+        const SlStore = await import('ewms-shoplocator/SlCoreStore')
+        const slCoreStore = SlStore.default.useCoreStore()
+        slCoreStore.apiUrl = 'https://api-url...'
+      } catch (err) {
+        console.error('Shop-Locator Service not available', err)
+      }
+      try {
+        const AwmsStore = await import('ewms-awms/AwmsStore')
+        const awmsCoreStore = AwmsStore.default.useCoreStore()
+        awmsCoreStore.apiUrl = 'https://api-url...'
+      } catch (err) {
+        console.error('AWMS Service not available', err)
+      }
+
+      // Finally mount the App
+      app.mount('#app')
+          </code>
+        </pre>
+      </section>
+      <section>
+        <p>The second check happens in the App.vue of the host application when menus are created</p>
+        <pre class="fragment fade-up">
+          <code data-line-numbers="1-41|3|4-12|14-26|15|16-17|18|21|24-26">//App.vue
+...
+const initMainMenuAndButton = async (t: ComposerTranslation) => {
+    const mainMenu: MenuItem[] = []
+    const applicationButtons: ApplicationButton[] = []
+    mainMenu.push({
+      title: t('ewms-wrapper.menu.main-menu.items.dashboard'),
+      icon: 'mdi-home',
+      link: '/dashboard',
+      id: 0,
+      active: true
+    })
+
+    try {
+        const slWidget = await import('ewms-shoplocator/AppService')
+        if (slWidget) {
+          if (slWidget.default && slWidget.default.useShoplocatorRegisterService) {
+            mainMenu.push(slWidget.default.useShoplocatorRegisterService().getMenuItem(t))
+          }
+          if (slWidget.default && slWidget.default.useShoplocatorRegisterService) {
+            applicationButtons.push(slWidget.default.useShoplocatorRegisterService().getAppButton(t))
+          }
+        }
+      } catch (err) {
+        console.log('Shop Locator not available', err)
+      }
+
+      try {
+        const awmsWidget = await import('ewms-awms/AppService')
+        if (awmsWidget) {
+          if (awmsWidget.default && awmsWidget.default.useAwmsRegisterService) {
+            mainMenu.push(awmsWidget.default.useAwmsRegisterService().getMenuItem(t))
+          }
+          if (awmsWidget.default && awmsWidget.default.useAwmsRegisterService) {
+            applicationButtons.push(awmsWidget.default.useAwmsRegisterService().getAppButton(t))
+          }
+        }
+      } catch (err) {
+        console.log('AWMS not available', err)
+      }
+      ...
+          </code>
+        </pre>
+      </section>
+      <section>
+        <p>The third check are happened when routes and translations are imported as shown before</p>
+      </section>
+      <section>
+        <p>In case of the remote service has no own routes the app form remote service must be imported.</p>
+        <p>Here is one example:</p>
+        <pre class="fragment fade-up">
+          <code data-line-numbers="1-17|3|4-6|9|11">//Subsidiaries.vue
+<script setup lang="ts">
+import {defineAsyncComponent} from "vue";
+const Subsidiary = defineAsyncComponent({
+  loader: () => import('ewms-subsidiaries/App'),
+})
+</script>
+
+<template>
+    <div class="__module-container">
+        <Subsidiary />
+    </div>
+</template>
+
+<style scoped lang="scss">
+...
+</style>
+          </code>
+        </pre>
+      </section>
+      <section>
+        <h2>Conclusion</h2>
+        <p class="fragment fade-up">So if the remote module is available a menu entry and routes will create, translations will loaded and stores will initialized.</p>
+        <p class="fragment fade-up">Otherwise, an error will be logged on the console and the module was not registered.</p>
+        <p class="fragment fade-up">All other, reachable, modules where loaded and available in the main (host) application</p>
+      </section>
+    </section>
+    <section data-background-image="./assets/presentation-bg.jpg">
+      <section>
+        <h1>Thank you for listening!</h1>
+      </section>
+      <section>
+        <img src="assets/memes/questions.jpg" alt="Questions?" />
+      </section>
+    </section>
+  </div>
+</div>
+<script src="dist/reveal.js"></script>
+<script src="plugin/zoom/zoom.js"></script>
+<script src="plugin/notes/notes.js"></script>
+<script src="plugin/search/search.js"></script>
+<script src="plugin/markdown/markdown.js"></script>
+<script src="plugin/highlight/highlight.js"></script>
+<script>
+
+  // Also available as an ES module, see:
+  // https://revealjs.com/initialization/
+  Reveal.initialize({
+    controls: true,
+    progress: true,
+    center: true,
+    hash: true,
+
+    // Learn about plugins: https://revealjs.com/plugins/
+    plugins: [ RevealZoom, RevealNotes, RevealSearch, RevealMarkdown, RevealHighlight ]
+  });
+
+</script>
+</body>
