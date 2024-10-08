@@ -1,0 +1,9 @@
+#overme .__contact-list {
+  list-style: none;
+  margin: 2rem 0;
+}
+#overme .__contact-list .__x-logo {
+  width: 32px;
+  height: 32px;
+  filter: invert(1);
+}
